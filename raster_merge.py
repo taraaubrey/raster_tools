@@ -9,6 +9,7 @@ from pathlib import Path
 import glob
 import geopandas as gpd
 import sys
+import os
 
 #folder with dem tifs
 
