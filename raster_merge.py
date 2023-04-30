@@ -17,11 +17,12 @@ in_dir = input("Input directory for raster merge: ")
 #r"C:\Users\tfo46\OneDrive - University of Canterbury\Tara_PhD\c_PhD\c_Data\a_source\dem_data\nz_hawkes_bay_LiDAR\lds-hawkes-bay-lidar-1m-dem-2020-GTiff"
 
 out_dir = input("Directory for raster merge (non-existent OK): ")
+name_out = input("Name of merged raster: ")
 #r"C:\Users\tfo46\OneDrive - University of Canterbury\Tara_PhD\c_PhD\c_Data\a_source\dem_data\nz_hawkes_bay_LiDAR\1m_mosaic"
 
 path = Path(in_dir)
 Path(out_dir).mkdir(exist_ok=True)
-output_path = os.path.join(out_dir, 'HBRC_dem_2020.tif')
+output_path = os.path.join(out_dir, f'{name_out}.tif')
 
 all_files = in_dir + "/*.tif"
 in_tifs = glob.glob(all_files)
@@ -39,6 +40,7 @@ in_tifs [:5]
 #TODO break up into blocks for memory processing
 
 for p in in_tifs:
+    print(f"Opening: {p}")
     raster = rio.open(p)
     raster2mosaic.append(raster)
 #raster2mosaic[:5]
